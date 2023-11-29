@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:58:24 by buozcan           #+#    #+#             */
-/*   Updated: 2023/11/19 01:21:42 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:29:18 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ double	get_dist3(t_vec3 point1, t_vec3 point2)
 
 double	vec3_mag(t_vec3 vec)
 {
-	return (get_dist3(g_vec3_base.vec3_null, vec));
+	return (get_dist3(vec3_set(0, 0, 0), vec));
 }
