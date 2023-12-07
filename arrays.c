@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_conv.c                                         :+:      :+:    :+:   */
+/*   arrays.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 19:44:26 by bgrhnzcn          #+#    #+#             */
+/*   Created: 2023/11/29 17:01:27 by bgrhnzcn          #+#    #+#             */
 /*   Updated: 2023/12/06 16:48:16 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_vec4	vec3_to_vec4(t_vec3 vec3, double w)
+size_t	ft_strarrlen(char **arr)
 {
-	return (vec4_set(vec3.x, vec3.y, vec3.z, w));
+	size_t	i;
+
+	if (arr == NULL)
+		return (0);
+	i = 0;
+	while (arr[i] && *arr[i] != '\n')
+		i++;
+	return (i);
 }
 
-t_vec3	vec4_to_vec3(t_vec4 vec4)
+void	free_str_arr(char **str_arr)
 {
-	return (vec3_set(vec4.x, vec4.y, vec4.z));
+	int	i;
+
+	i = 0;
+	while (str_arr[i])
+	{
+		free(str_arr[i]);
+		i++;
+	}
+	free(str_arr);
 }

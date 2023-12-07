@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:38:33 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2023/11/19 01:22:03 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:48:16 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vec2	vec2_set(double x, double y)
 t_vec2	vec2_add(t_vec2 vec1, t_vec2 vec2)
 {
 	t_vec2	vec_res;
-	
+
 	vec_res.x = vec1.x + vec2.x;
 	vec_res.y = vec1.y + vec2.y;
 	return (vec_res);

@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 00:03:36 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2023/11/19 01:20:57 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:45:22 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_mtx4	mtx4_rot(double x, double y, double z)
 	return (rot);
 }
 
-t_mtx4	loc_to_glob(t_vec3 t, t_vec3 r, t_vec3 s)
+t_mtx4	transform_mtx(t_vec3 t, t_vec3 r, t_vec3 s)
 {
 	t_mtx4	mtx;
 

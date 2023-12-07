@@ -6,45 +6,46 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 19:34:50 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2023/11/19 02:58:54 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:49:43 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
 # if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 
 typedef union u_color
 {
+	unsigned int	value;
 	struct
 	{
-		unsigned char	alpha;
-		unsigned char	red;
-		unsigned char	green;
-		unsigned char	blue;
+		__uint8_t	alpha;
+		__uint8_t	red;
+		__uint8_t	green;
+		__uint8_t	blue;
 	};
-	unsigned int	value;
 }	t_color;
 # else
 
 typedef union u_color
 {
+	unsigned int	value;
 	struct
 	{
-		unsigned char	blue;
-		unsigned char	green;
-		unsigned char	red;
-		unsigned char	alpha;
+		__uint8_t	blue;
+		__uint8_t	green;
+		__uint8_t	red;
+		__uint8_t	alpha;
 	};
-	unsigned int	value;
 }	t_color;
 # endif
 
-typedef struct s_list
+typedef struct s_gradient
 {
-	void			*content;
-	struct s_list	*next;
-}	t_list;
+	t_color	from;
+	t_color	to;
+}	t_gradient;
 
 typedef struct s_map
 {
@@ -180,10 +181,10 @@ typedef struct s_get_tris
 
 typedef struct s_fdf_map
 {
-	t_vec3			*vertexes;
-	unsigned int	*vertex_colors;
-	int				map_x;
-	int				map_y;
+	t_vec3	*verteces;
+	t_color	*vertex_colors;
+	int		map_x;
+	int		map_y;
 }	t_fdf_map;
 
 typedef struct s_fdf_data
@@ -199,10 +200,11 @@ typedef struct s_data
 {
 	t_mtx4		pers_mtx;
 	t_mtx4		orto_mtx;
+	t_mtx4		mtx_glob;
+	t_mtx4		mtx_loc;
 	void		*mlx;
 	void		*win;
 	t_img		img;
-	t_mesh		mesh;
 	int			time;
 	t_fdf_map	*map;
 }	t_data;

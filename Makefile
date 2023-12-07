@@ -1,44 +1,54 @@
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+INCLUDES_LINUX = -I/usr/include -Imlx -I .
+
+INCLUDES_MAC = -I .
+
+NAME = libft.a
+
+CC = gcc
+
+CFLAGS = -g -Wall -Werror -Wextra
+
+MLX_FLAGS_LINUX = linux_lib/libftprintf.a linux_lib/get_next_line.a linux_lib/libft.a libmlx.a\
+			-Bdynamic -L/usr/lib/X11 -lXext -lX11 -lm
+
+MLX_FLAGS_MAC = mac_lib/libft.a mac_lib/get_next_line.a mac_lib/libftprintf.a mac_lib/libmlx.a -Bdynamic -framework OpenGL -framework AppKit
+
+SRCS = mtx3_basic.c mtx4_basic.c transforms.c \
+	utils_bresenham_line.c utils_display.c map.c utils.c vec_conv.c \
+	vec2_double.c vec2_op.c vec2_vec2.c vec3_double.c vec3_op.c vec3_vec3.c\
+	vec4_double.c vec4_op.c vec4_vec4.c mesh_init.c mesh_init_utils.c \
+	colors.c gradient_line.c arrays.c pipeline.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
+	ft_isascii.c ft_isprint.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
+	ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c \
 	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c \
 	ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c \
 	ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c \
 	ft_substr.c ft_strjoin.c  ft_split.c  ft_strmapi.c ft_putnbr_fd.c\
 	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c  \
-	ft_strtrim.c ft_itoa.c mtx3_basic.c mtx4_basic.c colors.c projections.c transforms.c \
-	utils.c utils_display.c utils_maps.c utils_bresenham_line.c vec_conv.c vec2_double.c \
-	vec2_op.c vec2_vec2.c vec3_double.c vec3_vec3.c vec3_op.c vec4_double.c vec4_op.c \
-	vec4_vec4.c
-	
-BONUS_SRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c 
+	ft_strtrim.c ft_itoa.c
 
-OBJECTS = $(SRCS:.c=.o)
+ifeq ($(shell uname),Linux)
+	MLX_FLAGS = $(MLX_FLAGS_LINUX)
+	INCLUDES = $(INCLUDES_LINUX)
+else
+	MLX_FLAGS = $(MLX_FLAGS_MAC)
+	INCLUDES = $(INCLUDES_MAC)
+endif
 
-BONUS_OBJECTS = $(BONUS_SRCS:.c=.o)
+OBJ = $(SRCS:.c=.o)
 
-CC = gcc
+%.o: %.c
+	$(CC) $(CFLAGS) -c $(INCLUDES) $?
 
-FLAGS = -Wall -Werror -Wextra
-
-NAME = libft.a
+$(NAME): $(OBJ)
+	ar -rcsl $(NAME) $(OBJ)
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(FLAGS) -c $?
-
-$(NAME): ${OBJECTS} 
-	ar -rcs $(NAME) $(OBJECTS)
-
-bonus: $(OBJECTS) $(BONUS_OBJECTS)
-	ar -rcs $(NAME) $(OBJECTS) $(BONUS_OBJECTS)
+fclean: clean
+	rm -rf $(NAME)
 
 clean:
-	rm -f *.o
-
-fclean: clean
-	rm -f $(NAME)
+	rm -rf *.o
 
 re: fclean all
-
-.PHONY: all clean re fclean
