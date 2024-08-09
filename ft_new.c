@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_new.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/05/11 23:44:06 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/05/11 23:44:25 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_new(void *data, t_types type)
 {
-	size_t	i;
+	void	*entry;
 
-	if (dst == NULL && src == NULL)
+	entry = malloc(type);
+	if (entry == NULL)
 		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	ft_memcpy(entry, data, type);
+	return (entry);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_vector_clear.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/04/30 22:08:30 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/05/01 22:57:55 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_vector_clear(void *vector_adrr)
 {
-	size_t	i;
+	t_vector	*vector;
+	int			i;
 
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	if (vector_adrr == NULL)
+		return ;
+	vector = *(char **)vector_adrr;
+	i = ft_vector_len(vector);
+	while (i > 0)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
+		ft_vector_pop(vector_adrr, NULL);
+		i--;
 	}
-	return (dst);
 }

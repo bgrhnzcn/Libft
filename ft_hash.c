@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_hash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/05/07 17:06:51 by buozcan           #+#    #+#             */
+/*   Updated: 2024/07/20 20:07:45 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_pow(int base, unsigned int power)
 {
-	size_t	i;
-
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
+	while (power > 1)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		base *= base;
+		power--;
+	}
+	return (base);
+}
+
+size_t	ft_hash(void *data, size_t size)
+{
+	unsigned int	i;
+	unsigned int	res;
+
+	i = 0;
+	res = 0;
+	while (i < size)
+	{
+		res += (*(char *)(data + i) * ft_pow(31, size - i));
 		i++;
 	}
-	return (dst);
+	return (res);
 }

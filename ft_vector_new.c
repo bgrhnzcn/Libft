@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_vector_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/04/28 18:01:32 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/05/01 01:48:39 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_vector_new(size_t type_size_b)
 {
-	size_t	i;
+	t_vector	*vector;
 
-	if (dst == NULL && src == NULL)
+	vector = ft_calloc(1, (sizeof(t_vector) - 8 + (type_size_b * 1)));
+	if (vector == NULL)
 		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	vector->type_size = type_size_b;
+	vector->lenght = 0;
+	vector->buffer_size = type_size_b * 1;
+	return (&vector->buffer);
 }

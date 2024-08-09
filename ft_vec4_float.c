@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_vec4_float.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2023/11/08 20:49:32 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/01/18 18:35:28 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+float	ft_vec4_dot(t_vec4 vec1, t_vec4 vec2)
 {
-	size_t	i;
+	float	res;
 
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	res = 0;
+	res += vec1.x * vec2.x;
+	res += vec1.y * vec2.y;
+	res += vec1.z * vec2.z;
+	res += vec1.w * vec2.w;
+	return (res);
+}
+
+float	ft_vec4_mag(t_vec4 vec)
+{
+	return (sqrt(ft_vec4_dot(vec, vec)));
 }

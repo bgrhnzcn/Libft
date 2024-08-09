@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_stackpop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2024/01/21 21:12:05 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/04/06 17:15:49 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_stackpop(t_stack *stack)
 {
-	size_t	i;
+	void	*content;
+	t_list	*temp;
 
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	if (stack->count == 0)
+		return (ft_putstr_fd("You can't pop when stack is empty!!",
+				STDERR_FILENO), NULL);
+	content = stack->top->content;
+	temp = stack->top;
+	stack->top = stack->top->next;
+	ft_lstdelone(temp, NULL);
+	stack->count--;
+	return (content);
 }

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_drawing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 16:47:17 by buozcan           #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:14 by bgrhnzcn         ###   ########.fr       */
+/*   Created: 2023/11/07 15:42:40 by bgrhnzcn          #+#    #+#             */
+/*   Updated: 2024/06/20 22:03:20 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_put_pixel(t_img *img, int x, int y, t_color color)
 {
-	size_t	i;
+	img->data[x + (img->size_line * y)] = color;
+}
 
-	if (dst == NULL && src == NULL)
-		return (NULL);
+void	ft_fill_img(t_win *win, t_img *img, t_color color)
+{
+	int	i;
+	int	j;
+
 	i = 0;
-	while (i < n)
+	while (i < win->width)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		j = 0;
+		while (j < win->height)
+		{
+			ft_put_pixel(img, i, j, color);
+			j++;
+		}
 		i++;
 	}
-	return (dst);
 }
