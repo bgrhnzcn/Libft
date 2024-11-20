@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 19:34:50 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/20 20:12:12 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/09/12 00:47:06 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,50 +49,11 @@ typedef enum e_bool
 	true
 }	t_bool;
 
-typedef struct s_vector
-{
-	size_t	type_size;
-	size_t	buffer_size;
-	size_t	lenght;
-	char	buffer[1];
-}	t_vector;
-
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-typedef struct s_stack
-{
-	int		count;
-	t_list	*top;
-}	t_stack;
-
-typedef enum e_types
-{
-	type_str = sizeof(void *),
-	type_int = sizeof(int),
-	type_char = sizeof(char),
-	type_pointer = sizeof(void *)
-}	t_types;
-//can be changed
-typedef struct s_kv_pair
-{
-	void				*key;
-	void				*value;
-	t_bool				is_filled;
-	struct s_kv_pair	*next;
-}	t_kv_pair;
-//make more research about listing collision
-typedef struct s_hash_table
-{
-	size_t		(*hash)(void *data, size_t type);
-	t_kv_pair	*table;
-	t_types		key_type;
-	t_types		value_type;
-	size_t		table_size;
-}	t_hash_table;
 
 typedef struct s_map
 {
@@ -129,17 +90,6 @@ typedef struct s_gradient
 	t_color	to;
 }	t_gradient;
 
-typedef union u_tri
-{
-	struct
-	{
-		t_vec3	p1;
-		t_vec3	p2;
-		t_vec3	p3;
-	};
-	t_vec3	pts[3];
-}	t_tri;
-
 typedef union u_vec4
 {
 	struct
@@ -175,13 +125,6 @@ typedef union u_mtx4
 	float	data[16];
 }	t_mtx4;
 
-typedef struct s_mesh
-{
-	t_tri	*mesh;
-	int		tri_count;
-	int		ver_count;
-}	t_mesh;
-
 typedef struct s_img
 {
 	void	*img;
@@ -200,24 +143,6 @@ typedef struct s_draw_line
 	float	x;
 	float	y;
 }	t_draw_line;
-
-typedef struct s_get_verteces
-{
-	t_vec3	*vertices;
-	char	*line;
-	char	**datas;
-	int		obj_file;
-	int		index;
-}	t_get_vert;
-
-typedef struct s_get_tris
-{
-	t_tri	*tris;
-	char	*line;
-	char	**datas;
-	int		obj_file;
-	int		index;
-}	t_get_tris;
 
 typedef struct s_win
 {

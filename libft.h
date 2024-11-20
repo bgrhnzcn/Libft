@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: buozcan <buozcan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:20:27 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/07/20 20:12:24 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:10:23 by buozcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #  include <math.h>
 # endif
 # include "ft_structs.h"
-# include "ft_colors.h"
 # include "ft_inputs.h"
 
 # ifdef USE_MATH
@@ -109,129 +108,7 @@ char		**ft_split(char const *s, char c);
 
 //----------------------Memory-----------------------
 
-void		*ft_malloc(size_t nmemb, size_t size);
 void		*ft_calloc(size_t nmemb, size_t size);
-void		*ft_new(void *data, t_types type);
-
-//-----------------------Vectors----------------------
-
-typedef int*			t_int_vec;
-typedef char*			t_char_vec;
-typedef long*			t_long_vec;
-typedef unsigned char*	t_uchar_vec;
-typedef unsigned int*	t_uint_vec;
-typedef unsigned long*	t_ulong_vec;
-typedef char**			t_str_vec;
-
-/**
- * @brief
- * Returns dynamic array implemantation.
- * You can access elements like standart array.
- * @param type_size_b Size of stored type in bytes.
- * @return Pointer to buffer.
- */
-void		*ft_vector_new(size_t type_size_b);
-/**
- * @brief 
- * Free allocated memory for vector.
- * @param vector Pointer to buffer.
- */
-void		ft_vector_free(void *vector);
-/**
- * @brief 
- * Increases the capacity of the vector with given amount.
- * Don't use if it's not important.
- * @param vector_adrr Adress of pointer to buffer.
- * @param head Head of vector.
- * @param size Growing size as a byte.
- * @return Returns newly allocated version of vector head.
- */
-t_vector	*ft_vector_grow(void *vector_adrr, t_vector *head, size_t size);
-/**
- * @brief 
- * Decrease the capacity of the vector with given amount.
- * Don't use if it's not important.
- * @param vector_adrr Adress of pointer to buffer.
- * @param head Head of vector.
- * @param size Shrinking size as a byte.
- * @return Returns newly allocated version of vector head.
- */
-t_vector	*ft_vector_shrink(void *vector_adrr, t_vector *head, size_t size);
-/**
- * @brief 
- * Gets head of a vector.
- * @param vector Vector buffer.
- * @return Returns pointer to head of vector.
- */
-t_vector	*ft_vector_head(void *vector);
-/**
- * @brief 
- * Gets current lenght of a vector.
- * @param vector Vector buffer.
- * @return Returns lenght of a vector as an existing element count.
- */
-size_t		ft_vector_len(void *vector);
-/**
- * @brief 
- * Add new element to end of the vector.
- * If necessery growe the vector.
- * @param vector_adrr Adress of pointer to buffer.
- * @param val The value at the address is copied to the vector.
- * @return Returns the new lenght of vector after new element.
- */
-size_t		ft_vector_append(void *vector_adrr, void *val);
-/**
- * @brief 
- * Add new element to given index of the vector.
- * It moves the elements after the index by one.
- * If necessery growe the vector.
- * @param vector_adrr Adress of pointer to buffer.
- * @param val The value at the address is copied to the vector.
- * @param index Index to operate.
- * @return Returns the new size of the vector after new element.
- */
-size_t		ft_vector_insert(void *vector_adrr, void *val, const size_t index);
-/**
- * @brief 
- * Removes last element of the vector.
- * If necessery shrinks the vector.
- * @param vector_adrr Adress of pointer to buffer.
- * @param out The adress of output value. If not need then pass NULL.
- * @return Returns the new size of the vector after element removed.
- */
-size_t		ft_vector_pop(void *vector_adrr, void *out);
-/**
- * @brief 
- * Removes the element of given index.
- * It moves the elements after the index by one.
- * If necessery shrinks the vector.
- * @param vector_adrr Adress of pointer to buffer.
- * @param out The adress of output value. If not need then pass NULL.
- * @param index Index to operate.
- * @return Returns the new size of the vector after element removed.
- */
-size_t		ft_vector_remove(void *vector_adrr, void *out, const size_t index);
-/**
- * @brief 
- * Removes all the element in the vector.
- * Doesn't free vectors itself.
- * @param vector_adrr Adress of pointer to buffer.
- */
-void		ft_vector_iter(void *vector, void (*f)());
-void		ft_vector_clear(void *vector_adrr);
-
-//-----------------------String-----------------------
-
-typedef char*			t_string;
-
-t_string	ft_string_new(char *str);
-size_t		ft_string_len(t_string *str);
-void		ft_string_free(t_string str);
-size_t		ft_string_cat(t_string *dst, char *src);
-
-//-----------------------Hash-------------------------
-
-size_t		ft_hash(void *data, size_t size);
 
 //-----------------------Lists------------------------
 
@@ -275,24 +152,6 @@ The (comp) function is the condition for sorting and must be defined
 uniquely for the type of data of content in the list.
 If you use condition con1 > con2, it will check for increasing order.*/
 t_bool		ft_lstissorted(t_list *lst, t_bool (*comp)(void *con1, void *con2));
-
-//------------------------Stacks----------------------------
-
-/*Initializes new stack struct in heap.
-Starting value of count is 0 and values list are NULL.
-Don't try to access before some contents are pushed.*/
-t_stack		*ft_stacknew(void);
-/*Pushes the provided content to stack.
-If you push heap-allocated content,
-make sure all other contents are heap-allocated too.*/
-void		ft_stackpush(t_stack *stack, void *content);
-/*Return the content address from the top of the stack and removes it.
-If stack is empty, returns NULL and write error message to STDERR.*/
-void		*ft_stackpop(t_stack *stack);
-/*Applies the (del) function to every member of stack and free stacks itself.
-If you have stack-allocated contents, use NULL, otherwise use free
-to prevent memory leaks, or your own specific implementation.*/
-void		ft_stackclear(t_stack *stack, void (*del)(void *));
 
 /*Gets numbers of strings inside of string arrays.
 String arrays must be null-ended.*/
