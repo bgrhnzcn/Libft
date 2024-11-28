@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: buozcan <buozcan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:20:27 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/09/16 18:10:23 by buozcan          ###   ########.fr       */
+/*   Updated: 2024/11/28 16:37:22 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <inttypes.h>
 # ifdef USE_MATH
 #  include <math.h>
 # endif
@@ -212,6 +213,7 @@ t_vec3		ft_vec3_cross(t_vec3 vec1, t_vec3 vec2);
 float		ft_vec3_dot(t_vec3 vec1, t_vec3 vec2);
 float		ft_vec3_dist(t_vec3 point1, t_vec3 point);
 float		ft_vec3_mag(t_vec3 vec);
+t_bool		ft_vec3_equ(t_vec3 vec1, t_vec3 vec2);
 
 t_vec4		ft_vec4_norm(t_vec4 vec);
 
@@ -247,13 +249,9 @@ t_vec3		ft_vec4_to_vec3(t_vec4 vec4);
 
 /*4 channel int value color setter.
 a = Alpha, r = Red, g = Green, b = Blue*/
-t_color		ft_set_color(__uint8_t a, __uint8_t r, __uint8_t g, __uint8_t b);
+t_color		ft_set_color(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
 //Returns gradient value from given normalized value.
 t_color		ft_get_gradient_val(t_color from, t_color to, float value);
-//Gradient initializer.
-t_gradient	ft_set_gradient(t_color from, t_color to);
-//Gradient inverter.
-t_gradient	ft_inv_gradient(t_gradient in);
 
 void		ft_put_pixel(t_img *img, int x, int y, t_color color);
 

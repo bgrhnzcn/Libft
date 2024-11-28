@@ -25,10 +25,22 @@ float	ft_vec3_dot(t_vec3 vec1, t_vec3 vec2)
 
 float	ft_vec3_dist(t_vec3 point1, t_vec3 point2)
 {
-	return (sqrt(ft_vec3_dot(point1, point2)));
+	t_vec3	sub;
+
+	sub = ft_vec3_sub(point1, point2);
+	return (sqrt(ft_vec3_dot(sub, sub)));
 }
 
 float	ft_vec3_mag(t_vec3 vec)
 {
-	return (ft_vec3_dist(ft_vec3_set(0, 0, 0), vec));
+	return (ft_vec3_dist(g_vec3_null, vec));
+}
+
+t_bool	ft_vec3_equ(t_vec3 vec1, t_vec3 vec2)
+{
+	if (fabs(vec1.x) - fabs(vec2.x) < EPSILON
+		&& fabs(vec1.y) - fabs(vec2.y) < EPSILON
+		&& fabs(vec1.z) - fabs(vec2.z) < EPSILON)
+		return (true);
+	return (false);
 }

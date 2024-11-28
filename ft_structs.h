@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 19:34:50 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/11/23 19:32:35 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/11/28 01:22:00 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_STRUCTS_H
 # if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 
-typedef union u_color
+typedef union u_color32
 {
 	struct
 	{
@@ -24,11 +24,11 @@ typedef union u_color
 		unsigned char	blue;
 	};
 	unsigned int	value;
-}	t_color;
+}	t_color32;
 
 # else
 
-typedef union u_color
+typedef union u_color32
 {
 	struct
 	{
@@ -38,9 +38,21 @@ typedef union u_color
 		unsigned char	alpha;
 	};
 	unsigned int	value;
-}	t_color;
+}	t_color32;
 
 # endif
+
+typedef union u_color
+{
+	struct
+	{
+		float	a;
+		float	r;
+		float	g;
+		float	b;
+	};
+	float	data[4];
+}	t_color;
 
 typedef enum e_bool
 {
@@ -84,12 +96,6 @@ typedef union u_vec3
 	float	data[3];
 }	t_vec3;
 
-typedef struct s_gradient
-{
-	t_color	from;
-	t_color	to;
-}	t_gradient;
-
 typedef union u_vec4
 {
 	struct
@@ -127,12 +133,12 @@ typedef union u_mtx4
 
 typedef struct s_img
 {
-	void	*img;
-	t_color	*data;
-	int		bits_per_pixel;
-	int		size_line;
-	int		line_count;
-	int		endian;
+	void		*img;
+	t_color32	*data;
+	int			bits_per_pixel;
+	int			size_line;
+	int			line_count;
+	int			endian;
 }	t_img;
 
 typedef struct s_draw_line
