@@ -6,7 +6,7 @@
 /*   By: bgrhnzcn <bgrhnzcn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:20:27 by bgrhnzcn          #+#    #+#             */
-/*   Updated: 2024/11/28 16:37:22 by bgrhnzcn         ###   ########.fr       */
+/*   Updated: 2024/12/01 02:37:22 by bgrhnzcn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,10 @@ a = Alpha, r = Red, g = Green, b = Blue*/
 t_color		ft_set_color(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
 //Returns gradient value from given normalized value.
 t_color		ft_get_gradient_val(t_color from, t_color to, float value);
+
+t_color32	ft_color_to_color32(t_color color);
+
+t_color		ft_color32_to_color(t_color32 color32);
 
 void		ft_put_pixel(t_img *img, int x, int y, t_color color);
 
